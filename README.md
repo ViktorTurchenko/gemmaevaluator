@@ -26,7 +26,7 @@ Run the Docker container using the following command, replacing **your_huggingfa
 docker run -p 8000:8000 -e HF_TOKEN=your_huggingface_token_here essay-evaluator
 ```
 
-This command starts the container and makes the FastAPI application accessible on http://localhost:8000. The API token is passed securely as an environment variable. You need the API token in order to download the tokenizer and the model from HuggingFace which then will be ran locally.
+This command starts the container and makes the FastAPI application accessible on http://localhost:8000. The API token is passed securely as an environment variable. You need the API token in order to download the tokenizer and the model from HuggingFace which then will be ran locally. Make sure your account is authorized for usage of the "google/gemma-2b-it" model.
 
 ### Scalability
 This application can be scaled to handle more requests by increasing the number of Gunicorn workers. To do this, adjust the -w parameter in the Docker CMD directive within the Dockerfile. Here's how you can modify it to use more workers:
