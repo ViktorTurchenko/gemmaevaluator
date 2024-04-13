@@ -38,3 +38,18 @@ CMD ["gunicorn", "main:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "
 ### Considerations
 - **CPU Usage:** Increasing the number of workers will increase CPU usage. Ensure the deployment environment has sufficient CPU resources to handle the additional load.
 - **Load Balancing:** For significant scaling across multiple machines or high-availability setups, consider using a load balancer in front of the Docker containers to distribute incoming traffic evenly.
+
+# Testing on FastAPI
+You can further test the application on FastAPI by opening http://localhost:8000/docs# and sending a request. The request body should be of the following format:
+```bash
+{
+  "prompt": "There's a shift happening. Folks are driving less, opting for alternative transportation, and embracing a car-lite lifestyle. You might be wondering, what's going on? Why are people willingly giving up their wheels? Well, there are a host of reasons, and I'm here to break them down for you. First off, limiting car usage means fewer emissions. Think about it: the less we drive, the cleaner the air we breathe. According to the New York Times, transportation is the second largest source of Americas emissions, just behind power plants (Rosenthal, 2013). By driving less, we can significantly reduce our carbon footprint. In fact, one study found that driving by young people decreased 23 percent between 2001 and 2009 (The End of Car Culture, 2013). ",
+  "max_length": 2000
+}
+```
+The expected response should be the following:
+```bash
+{
+  "result": "The essay is about the shift towards a car-lite lifestyle. It provides various reasons for this shift, including the environmental benefits of driving less, the shift towards alternative transportation, and the embrace of a car-lite lifestyle. The essay is well-written and provides a clear overview of the topic. However, it is difficult to determine if it was written by an AI or a human, as the essay contains some stylistic features that are often associated with AI, such as the use of bullet points and numbered lists. Additionally, the essay's tone is somewhat objective and non-judgmental, which could indicate that it was written by an AI.<eos>"
+}
+```
