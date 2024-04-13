@@ -16,4 +16,12 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build -t essay-evaluator . --file Dockerfile --tag essay-evaluator:$(date +%s)
-
+    
+    - name: Docker Build Push
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: viktorturchenko/gemma-evaluator
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME}}
+        password: ${{ secrets.DOCKER_PASSWORD}}
+  
